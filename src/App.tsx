@@ -1,3 +1,4 @@
+import { IoSearchSharp } from "react-icons/io5";
 import Header from "./components/Header";
 
 function App() {
@@ -5,9 +6,16 @@ function App() {
     <div>
       <Header />
       <main>
-        <div className="container">
-          <input placeholder="Search for a country..." />
-          <select>
+        <div className="container-filter">
+          <div className="search-field">
+            <IoSearchSharp className="search-icon" />
+            <input
+              className="search-input"
+              type="text"
+              placeholder="Search for a country..."
+            />
+          </div>
+          <select className="filter-region">
             <option disabled={true} value="">
               Filter by Region
             </option>
