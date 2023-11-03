@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import Header from "./components/Header";
+import Card from "./components/Card";
+import Dropdown from "./components/Dropdown";
 
 function App() {
+  const [selectedRegion, setSelectedRegion] = useState("");
+  console.log(selectedRegion);
+
   return (
     <div>
       <Header />
@@ -15,31 +21,16 @@ function App() {
               placeholder="Search for a country..."
             />
           </div>
-          <select className="filter-region">
-            <option disabled={true} value="">
-              Filter by Region
-            </option>
-            {["Africa", "America", "Asia", "Europe", "Ocenia"].map((region) => (
-              <option value={region}>{region}</option>
-            ))}
-          </select>
+          <Dropdown setSelectedRegion={setSelectedRegion} />
         </div>
         <div className="countries-grid">
-          <div className="card">
-            <img src="https://flagcdn.com/w320/de.png" />
-            <h3>Germany</h3>
-            <div className="country-grid-details">
-              <p>
-                <strong>Population: </strong>81,770,900
-              </p>
-              <p>
-                <strong>Region: </strong>Europe
-              </p>
-              <p>
-                <strong>Capital: </strong>Berlin
-              </p>
-            </div>
-          </div>
+          <Card
+            image="https://flagcdn.com/de.svg"
+            title="Germany"
+            population="81,770,900"
+            region="Europe"
+            capital="Berlin"
+          />
         </div>
       </main>
     </div>
