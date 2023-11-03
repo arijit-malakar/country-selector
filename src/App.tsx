@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { IoSearchSharp } from "react-icons/io5";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import Dropdown from "./components/Dropdown";
 import Loader from "./components/Loading";
+import ErrorMessage from "./components/ErrorMessage";
+import Search from "./components/Search";
 
 interface Country {
   name: {
@@ -18,56 +19,68 @@ interface Country {
 }
 
 function App() {
+  const [query, setQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [countries, setCountries] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   console.log(selectedRegion);
 
   useEffect(() => {
-    const url = "https://restcountries.com/v3.1/all";
+    const baseUrl = "https://restcountries.com/v3.1";
     const fetchCountries = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch(url);
+        setError("");
+        let res;
+        if (query) {
+          res = await fetch(`${baseUrl}/name/${query}`);
+        } else {
+          res = await fetch(`${baseUrl}/all`);
+        }
         const data = await res.json();
+        if (data.status === 404) throw new Error("Country not found");
         setCountries(data);
+      } catch (err) {
+        setError((err as Error).message);
+      } finally {
         setIsLoading(false);
-      } catch (error) {
-        console.log(error);
       }
     };
+
+    if (query.length > 0 && query.length < 3) {
+      return;
+    }
+
     fetchCountries();
-  }, []);
+  }, [query]);
 
   return (
     <div>
       <Header />
       <main>
         <div className="container-filter">
-          <div className="search-field">
-            <IoSearchSharp className="search-icon" />
-            <input
-              className="search-input"
-              type="text"
-              placeholder="Search for a country..."
-            />
-          </div>
+          <Search query={query} setQuery={setQuery} />
           <Dropdown setSelectedRegion={setSelectedRegion} />
         </div>
         <div className="container-grid">
           {isLoading ? (
             <Loader />
           ) : (
-            countries.map((country, i) => (
-              <Card
-                key={i}
-                image={country.flags.svg}
-                title={country.name.official}
-                population={country.population}
-                region={country.region}
-                capital={country.capital}
-              />
-            ))
+            <>
+              {!error &&
+                countries.map((country, i) => (
+                  <Card
+                    key={i}
+                    image={country.flags.svg}
+                    title={country.name.official}
+                    population={country.population}
+                    region={country.region}
+                    capital={country.capital}
+                  />
+                ))}
+              {error && <ErrorMessage message={error} />}
+            </>
           )}
         </div>
       </main>
