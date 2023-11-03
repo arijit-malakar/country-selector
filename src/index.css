@@ -38,6 +38,15 @@ main {
   margin: 0.5rem auto 2rem;
 }
 
+.container-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 2rem;
+  grid-row-gap: 3.5rem;
+}
+
+/* Search */
+
 .search-field {
   display: flex;
   position: relative;
@@ -56,6 +65,8 @@ main {
   border-radius: 0.25rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
+/* ------------------------- */
 
 /* Card */
 .card {
@@ -92,6 +103,8 @@ main {
 .card-details p strong {
   font-weight: 600;
 }
+
+/* ------------------------- */
 
 /* Dropdown */
 .dropdown {
@@ -133,3 +146,5 @@ main {
 .dropdown-item:hover {
   background: hsl(0, 0%, 98%);
 }
+
+/* ------------------------- */

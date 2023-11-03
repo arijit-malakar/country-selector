@@ -1,7 +1,7 @@
 interface CardProps {
   image: string;
   title: string;
-  population: string;
+  population: number;
   region: string;
   capital: string;
 }
