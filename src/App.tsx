@@ -18,6 +18,8 @@ interface Country {
   capital: string;
 }
 
+const baseUrl = "https://restcountries.com/v3.1";
+
 function App() {
   const [query, setQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -26,8 +28,27 @@ function App() {
   const [error, setError] = useState("");
   console.log(selectedRegion);
 
+  // const fetchBy = async (fetchType: string) => {
+  //   try {
+  //     setIsLoading(true);
+  //     setError("");
+  //     let res;
+  //     if (fetchType === "name") {
+  //       res = await fetch(`${baseUrl}/name/${query}`);
+  //     } else if (fetchType === "region") {
+  //       res = await fetch(`${baseUrl}/region/${selectedRegion}`);
+  //     }
+  //     const data = await res?.json();
+  //     if (data.status === 404) throw new Error("Country not found");
+  //     setCountries(data);
+  //   } catch (err) {
+  //     setError((err as Error).message);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   useEffect(() => {
-    const baseUrl = "https://restcountries.com/v3.1";
     const fetchCountries = async () => {
       try {
         setIsLoading(true);
@@ -35,11 +56,12 @@ function App() {
         let res;
         if (query) {
           res = await fetch(`${baseUrl}/name/${query}`);
+        } else if (selectedRegion) {
+          res = await fetch(`${baseUrl}/region/${selectedRegion}`);
         } else {
           res = await fetch(`${baseUrl}/all`);
         }
         const data = await res.json();
-        if (data.status === 404) throw new Error("Country not found");
         setCountries(data);
       } catch (err) {
         setError((err as Error).message);
@@ -53,15 +75,23 @@ function App() {
     }
 
     fetchCountries();
-  }, [query]);
+  }, [query, selectedRegion]);
 
   return (
     <div>
       <Header />
       <main>
         <div className="container-filter">
-          <Search query={query} setQuery={setQuery} />
-          <Dropdown setSelectedRegion={setSelectedRegion} />
+          <Search
+            query={query}
+            setQuery={setQuery}
+            setSelectedRegion={setSelectedRegion}
+          />
+          <Dropdown
+            selectedRegion={selectedRegion}
+            setSelectedRegion={setSelectedRegion}
+            setQuery={setQuery}
+          />
         </div>
         <div className="container-grid">
           {isLoading ? (

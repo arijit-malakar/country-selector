@@ -2,10 +2,16 @@ import { useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
 
 interface DropdownProps {
+  selectedRegion: string;
   setSelectedRegion: React.Dispatch<React.SetStateAction<string>>;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Dropdown({ setSelectedRegion }: DropdownProps) {
+function Dropdown({
+  selectedRegion,
+  setSelectedRegion,
+  setQuery,
+}: DropdownProps) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
@@ -14,7 +20,8 @@ function Dropdown({ setSelectedRegion }: DropdownProps) {
         className="dropdown-btn"
         onClick={() => setShowDropdown(!showDropdown)}
       >
-        Filter By Region <IoChevronDown className="dropdown-arrow" />
+        {selectedRegion ? selectedRegion : "Filter By Region"}{" "}
+        <IoChevronDown className="dropdown-arrow" />
       </div>
       {showDropdown && (
         <div className="dropdown-content">
@@ -26,6 +33,7 @@ function Dropdown({ setSelectedRegion }: DropdownProps) {
                 onClick={() => {
                   setSelectedRegion(region);
                   setShowDropdown(false);
+                  setQuery("");
                 }}
               >
                 {region}
