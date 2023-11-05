@@ -11,7 +11,7 @@ interface Country {
     official: string;
   };
   flags: {
-    svg: string;
+    png: string;
   };
   population: number;
   region: string;
@@ -26,27 +26,6 @@ function App() {
   const [countries, setCountries] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  console.log(selectedRegion);
-
-  // const fetchBy = async (fetchType: string) => {
-  //   try {
-  //     setIsLoading(true);
-  //     setError("");
-  //     let res;
-  //     if (fetchType === "name") {
-  //       res = await fetch(`${baseUrl}/name/${query}`);
-  //     } else if (fetchType === "region") {
-  //       res = await fetch(`${baseUrl}/region/${selectedRegion}`);
-  //     }
-  //     const data = await res?.json();
-  //     if (data.status === 404) throw new Error("Country not found");
-  //     setCountries(data);
-  //   } catch (err) {
-  //     setError((err as Error).message);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -102,7 +81,7 @@ function App() {
                 countries.map((country, i) => (
                   <Card
                     key={i}
-                    image={country.flags.svg}
+                    image={country.flags.png}
                     title={country.name.official}
                     population={country.population}
                     region={country.region}
