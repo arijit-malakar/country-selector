@@ -57,7 +57,7 @@ function App() {
   }, [query, selectedRegion]);
 
   return (
-    <div>
+    <>
       <Header />
       <main>
         <div className="container-filter">
@@ -93,7 +93,7 @@ function App() {
           )}
         </div>
       </main>
-    </div>
+    </>
   );
 }
 

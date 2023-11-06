@@ -40,9 +40,9 @@ main {
 
 .container-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 3.5rem;
-  grid-row-gap: 3.65rem;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 3.5rem;
+  margin: 0 auto;
 }
 
 /* Search */
@@ -59,7 +59,7 @@ main {
 }
 
 .search-input {
-  width: 28rem;
+  max-width: 28rem;
   padding: 1rem;
   padding-left: 3rem;
   border: unset;
@@ -71,7 +71,7 @@ main {
 
 /* Card */
 .card {
-  width: 18rem;
+  /* width: 18rem; */
   background-color: #fff;
   display: flex;
   flex-direction: column;
