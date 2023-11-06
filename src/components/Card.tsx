@@ -1,3 +1,5 @@
+import formatNumber from "../utils/formatNumber";
+
 interface CardProps {
   image: string;
   title: string;
@@ -15,7 +17,7 @@ function Card({ image, title, population, region, capital }: CardProps) {
         <div className="card-details">
           <p>
             <strong>Population: </strong>
-            {population}
+            {formatNumber(population)}
           </p>
           <p>
             <strong>Region: </strong>
