@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import Dropdown from "./components/Dropdown";
-import Loader from "./components/Loading";
+import Loader from "./components/Loader";
 import ErrorMessage from "./components/ErrorMessage";
 import Search from "./components/Search";
 
