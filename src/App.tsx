@@ -8,10 +8,10 @@ import Search from "./components/Search";
 
 interface Country {
   name: {
-    official: string;
+    common: string;
   };
   flags: {
-    png: string;
+    svg: string;
   };
   population: number;
   region: string;
@@ -41,6 +41,7 @@ function App() {
           res = await fetch(`${baseUrl}/all`);
         }
         const data = await res.json();
+        if (data.status === 404) throw new Error("Country not found");
         setCountries(data);
       } catch (err) {
         setError((err as Error).message);
@@ -81,8 +82,8 @@ function App() {
                 countries.map((country, i) => (
                   <Card
                     key={i}
-                    image={country.flags.png}
-                    title={country.name.official}
+                    image={country.flags.svg}
+                    title={country.name.common}
                     population={country.population}
                     region={country.region}
                     capital={country.capital}

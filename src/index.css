@@ -38,11 +38,12 @@ body {
 
 .header {
   background-color: hsl(0, 0%, 100%);
-  padding: 1.25rem 3.75rem;
+  padding: 1.25rem 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid hsl(0, 0%, 98%);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 480px) {
@@ -52,7 +53,7 @@ body {
 }
 
 main {
-  padding: 1.5rem 3.75rem;
+  padding: 1.5rem 4rem;
 }
 
 @media (max-width: 480px) {
@@ -80,7 +81,7 @@ main {
 .container-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-  gap: 3.5rem;
+  gap: 3.75rem;
   margin: 0 auto;
 }
 
@@ -130,7 +131,7 @@ main {
 }
 
 .moon-icon path {
-  stroke-width: 2.25rem;
+  stroke-width: 2.5rem;
 }
 
 /* ------------------------- */
@@ -173,7 +174,6 @@ main {
 
 /* Card */
 .card {
-  /* width: 18rem; */
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -184,24 +184,30 @@ main {
 
 .card-img {
   height: 10rem;
+  object-fit: cover;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
 
 .card-body {
-  padding: 1.25rem;
+  padding: 1.5rem 1.25rem;
 }
 
 .card-title {
   margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
 .card-details {
-  margin-bottom: 1rem;
+  font-size: 0.875rem;
 }
 
 .card-details p {
   margin-bottom: 0.5rem;
+}
+
+.card-details p:last-child {
+  margin-bottom: 0;
 }
 
 .card-details p strong {
@@ -212,7 +218,8 @@ main {
 
 /* Dropdown */
 .dropdown {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 600;
   flex-basis: 12rem;
   position: relative;
   user-select: none;
@@ -224,13 +231,13 @@ main {
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  padding: 1rem;
+  padding: 1rem 1.25rem;
   border-radius: 0.25rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.dropdown-arrow {
-  margin-left: 1.5rem;
+.dropdown-arrow path {
+  stroke-width: 4rem;
 }
 
 .dropdown-content {
@@ -244,7 +251,7 @@ main {
 }
 
 .dropdown-item {
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
   cursor: pointer;
   transition: all 0.2s;
 }
