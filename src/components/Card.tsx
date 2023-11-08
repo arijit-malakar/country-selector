@@ -8,7 +8,13 @@ interface CardProps {
   capital: string;
 }
 
-function Card({ image, title, population, region, capital }: CardProps) {
+const Card: React.FC<CardProps> = ({
+  image,
+  title,
+  population,
+  region,
+  capital,
+}) => {
   return (
     <div className="card">
       <img className="card-img" src={image} />
@@ -31,6 +37,6 @@ function Card({ image, title, population, region, capital }: CardProps) {
       </div>
     </div>
   );
-}
+};
 
 export default Card;

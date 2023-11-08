@@ -1,3 +1,1 @@
-export default function formatNumber(value: number) {
-  return new Intl.NumberFormat().format(value);
-}
+export default (value: number) => new Intl.NumberFormat().format(value);

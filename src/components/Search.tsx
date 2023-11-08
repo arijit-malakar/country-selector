@@ -6,7 +6,11 @@ interface SearchProps {
   setSelectedRegion: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Search({ query, setQuery, setSelectedRegion }: SearchProps) {
+const Search: React.FC<SearchProps> = ({
+  query,
+  setQuery,
+  setSelectedRegion,
+}) => {
   return (
     <div className="search-field">
       <IoSearchSharp className="search-icon" />
@@ -22,6 +26,6 @@ function Search({ query, setQuery, setSelectedRegion }: SearchProps) {
       />
     </div>
   );
-}
+};
 
 export default Search;

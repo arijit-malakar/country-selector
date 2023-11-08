@@ -6,22 +6,11 @@ import Loader from "./components/Loader";
 import ErrorMessage from "./components/ErrorMessage";
 import Search from "./components/Search";
 import { useTheme } from "./hooks/useTheme";
-
-interface Country {
-  name: {
-    common: string;
-  };
-  flags: {
-    svg: string;
-  };
-  population: number;
-  region: string;
-  capital: string;
-}
+import { Country } from "./@types/countryTypes";
 
 const baseUrl = "https://restcountries.com/v3.1";
 
-function App() {
+const App = () => {
   const { isDarkMode } = useTheme();
   const [query, setQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -106,6 +95,6 @@ function App() {
       </main>
     </>
   );
-}
+};
 
 export default App;

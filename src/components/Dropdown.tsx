@@ -7,11 +7,11 @@ interface DropdownProps {
   setQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Dropdown({
+const Dropdown: React.FC<DropdownProps> = ({
   selectedRegion,
   setSelectedRegion,
   setQuery,
-}: DropdownProps) {
+}) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
@@ -44,6 +44,6 @@ function Dropdown({
       )}
     </div>
   );
-}
+};
 
 export default Dropdown;

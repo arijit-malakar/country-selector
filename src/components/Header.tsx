@@ -1,7 +1,7 @@
 import { IoMoonOutline, IoMoon } from "react-icons/io5";
 import { useTheme } from "../hooks/useTheme";
 
-function Header() {
+const Header = () => {
   const { isDarkMode, toggleTheme } = useTheme();
 
   return (
@@ -17,6 +17,6 @@ function Header() {
       </button>
     </header>
   );
-}
+};
 
 export default Header;
