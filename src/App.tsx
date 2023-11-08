@@ -5,6 +5,7 @@ import Dropdown from "./components/Dropdown";
 import Loader from "./components/Loader";
 import ErrorMessage from "./components/ErrorMessage";
 import Search from "./components/Search";
+import { useTheme } from "./hooks/useTheme";
 
 interface Country {
   name: {
@@ -21,6 +22,7 @@ interface Country {
 const baseUrl = "https://restcountries.com/v3.1";
 
 function App() {
+  const { isDarkMode } = useTheme();
   const [query, setQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [countries, setCountries] = useState<Country[]>([]);
@@ -50,12 +52,20 @@ function App() {
       }
     };
 
+    if (isDarkMode) {
+      document.body.classList.add("dark-theme");
+      document.body.classList.remove("light-theme");
+    } else {
+      document.body.classList.add("light-theme");
+      document.body.classList.remove("dark-theme");
+    }
+
     if (query.length > 0 && query.length < 3) {
       return;
     }
 
     fetchCountries();
-  }, [query, selectedRegion]);
+  }, [isDarkMode, query, selectedRegion]);
 
   return (
     <>
