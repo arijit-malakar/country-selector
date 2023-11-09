@@ -126,6 +126,17 @@ main {
   }
 }
 
+.container-btn {
+  padding: 2rem 0;
+}
+
+.container-detail {
+  padding: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem 5rem;
+}
+
 /* Heading */
 
 .heading-logo {
@@ -138,21 +149,46 @@ main {
   }
 }
 
+.heading-primary {
+  font-size: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
 /* ------------------------- */
 
 /* Buttons */
 .btn {
   color: inherit;
+  padding: 0.5rem 1.5rem;
+  font-family: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  background-color: var(--element);
+  border: unset;
+  border-radius: 0.25rem;
 }
 
-.btn-theme-toggle {
-  cursor: pointer;
-  background-color: unset;
-  border: unset;
+.btn-with-icon {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: inherit;
+}
+
+.btn-back {
+  box-shadow: 0 0 6px 1px rgba(0 0 0 /0.2);
+}
+
+.btn-icon-wrapper {
+  display: inline-flex;
+}
+
+.btn-country {
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0 4px 0px rgba(0 0 0 /0.2);
+}
+
+.btn-theme-toggle {
+  padding: unset;
   font-size: 0.875rem;
   font-weight: 600;
 }
@@ -170,6 +206,10 @@ main {
 
 .light-theme .moon-icon path {
   stroke-width: 2.5rem;
+}
+
+.back-icon {
+  font-size: 1.25rem;
 }
 
 /* ------------------------- */
@@ -325,6 +365,65 @@ main {
   to {
     transform: rotate(0.5turn);
   }
+}
+
+/* ------------------------- */
+
+/* COUNTRY DETAIL */
+
+.col-detail {
+  flex: 1;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .col-detail {
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+.country-img {
+  width: 100%;
+}
+
+.info-text {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  justify-content: space-between;
+}
+
+.info p {
+  margin-bottom: 0.75rem;
+}
+
+.info p:last-child {
+  margin-bottom: 0;
+}
+
+.info p strong {
+  font-weight: 600;
+}
+
+.info-border {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.info-border strong {
+  font-weight: 600;
+}
+
+.btn-group {
+  display: flex;
+  gap: 0.5rem;
 }
 
 /* ------------------------- */

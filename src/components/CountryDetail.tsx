@@ -1,16 +1,23 @@
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
+
 const CountryDetail: React.FC = () => {
   return (
     <>
       <div className="container-btn">
-        <button className="btn btn-back">&larr; Back</button>
+        <button className="btn btn-with-icon btn-back">
+          <span className="btn-icon-wrapper">
+            <MdOutlineKeyboardBackspace className="back-icon" />
+          </span>
+          Back
+        </button>
       </div>
       <div className="container-detail">
-        <div className="country-img">
-          <img src="https://flagcdn.com/in.svg" />
+        <div className="col-detail">
+          <img className="country-img" src="https://flagcdn.com/in.svg" />
         </div>
-        <div className="country-detail">
+        <div className="col-detail">
           <h1 className="heading-primary">Belgium</h1>
-          <div className="flex-side-by-side">
+          <div className="info-text">
             <div className="info">
               <p>
                 <strong>Native Name: </strong>
@@ -49,9 +56,9 @@ const CountryDetail: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex-side-by-side">
-            <strong>Native Name: </strong>
-            <div className="btn-wrapper">
+          <div className="info-border">
+            <strong>Border Countries: </strong>
+            <div className="btn-group">
               <button className="btn btn-country">France</button>
               <button className="btn btn-country">Germany</button>
               <button className="btn btn-country">Netherlands</button>

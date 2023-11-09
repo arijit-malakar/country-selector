@@ -6,12 +6,15 @@ import Loader from "./components/Loader";
 import ErrorMessage from "./components/ErrorMessage";
 import Search from "./components/Search";
 import { useTheme } from "./hooks/useTheme";
+import { useNavigation } from "./hooks/useNavigation";
 import { Country } from "./@types/countryTypes";
+import CountryDetail from "./components/CountryDetail";
 
 const baseUrl = "https://restcountries.com/v3.1";
 
 const App = () => {
   const { isDarkMode } = useTheme();
+  const { currentPath } = useNavigation();
   const [query, setQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [countries, setCountries] = useState<Country[]>([]);
@@ -60,38 +63,48 @@ const App = () => {
     <>
       <Header />
       <main>
-        <div className="container-filter">
-          <Search
-            query={query}
-            setQuery={setQuery}
-            setSelectedRegion={setSelectedRegion}
-          />
-          <Dropdown
-            selectedRegion={selectedRegion}
-            setSelectedRegion={setSelectedRegion}
-            setQuery={setQuery}
-          />
-        </div>
-        <div className="container-grid">
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
-              {!error &&
-                countries.map((country, i) => (
-                  <Card
-                    key={i}
-                    image={country.flags.svg}
-                    title={country.name.common}
-                    population={country.population}
-                    region={country.region}
-                    capital={country.capital}
-                  />
-                ))}
-              {error && <ErrorMessage message={error} />}
-            </>
-          )}
-        </div>
+        {currentPath === "/" && (
+          <>
+            <div className="container-filter">
+              <Search
+                query={query}
+                setQuery={setQuery}
+                setSelectedRegion={setSelectedRegion}
+              />
+              <Dropdown
+                selectedRegion={selectedRegion}
+                setSelectedRegion={setSelectedRegion}
+                setQuery={setQuery}
+              />
+            </div>
+            <div className="container-grid">
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <>
+                  {!error &&
+                    countries.map((country, i) => (
+                      <Card
+                        key={i}
+                        to={country.name.official}
+                        image={country.flags.svg}
+                        title={country.name.common}
+                        population={country.population}
+                        region={country.region}
+                        capital={country.capital}
+                      />
+                    ))}
+                  {error && <ErrorMessage message={error} />}
+                </>
+              )}
+            </div>
+          </>
+        )}
+        {currentPath.startsWith("/country/") ? (
+          <CountryDetail />
+        ) : (
+          <p>Page Not Found ☹️</p>
+        )}
       </main>
     </>
   );
