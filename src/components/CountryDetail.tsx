@@ -1,15 +1,20 @@
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
+import { useNavigation } from "../hooks/useNavigation";
+import Button from "./Button";
 
 const CountryDetail: React.FC = () => {
+  const { navigate } = useNavigation();
+
   return (
     <>
       <div className="container-btn">
-        <button className="btn btn-with-icon btn-back">
-          <span className="btn-icon-wrapper">
-            <MdOutlineKeyboardBackspace className="back-icon" />
-          </span>
+        <Button
+          type="back"
+          icon={<MdOutlineKeyboardBackspace className="back-icon" />}
+          onClick={() => navigate("/")}
+        >
           Back
-        </button>
+        </Button>
       </div>
       <div className="container-detail">
         <div className="col-detail">
@@ -59,9 +64,15 @@ const CountryDetail: React.FC = () => {
           <div className="info-border">
             <strong>Border Countries: </strong>
             <div className="btn-group">
-              <button className="btn btn-country">France</button>
-              <button className="btn btn-country">Germany</button>
-              <button className="btn btn-country">Netherlands</button>
+              {["France", "Germany", "Netherlands"].map((country, i) => (
+                <Button
+                  key={i}
+                  type="country"
+                  onClick={() => navigate(`/country/${country}`)}
+                >
+                  {country}
+                </Button>
+              ))}
             </div>
           </div>
         </div>

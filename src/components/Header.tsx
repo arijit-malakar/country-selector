@@ -1,5 +1,6 @@
 import { IoMoonOutline, IoMoon } from "react-icons/io5";
 import { useTheme } from "../hooks/useTheme";
+import Button from "./Button";
 
 const Header = () => {
   const { isDarkMode, toggleTheme } = useTheme();
@@ -7,19 +8,19 @@ const Header = () => {
   return (
     <header className="header">
       <h2 className="heading-logo">Where in the world?</h2>
-      <button
-        className="btn btn-with-icon btn-theme-toggle"
-        onClick={toggleTheme}
-      >
-        <span className="btn-icon-wrapper">
-          {isDarkMode ? (
+      <Button
+        type="theme-switch"
+        icon={
+          isDarkMode ? (
             <IoMoon className="moon-icon" />
           ) : (
             <IoMoonOutline className="moon-icon" />
-          )}
-        </span>
+          )
+        }
+        onClick={toggleTheme}
+      >
         Dark Mode
-      </button>
+      </Button>
     </header>
   );
 };
