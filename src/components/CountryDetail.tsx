@@ -14,7 +14,6 @@ const CountryDetail: React.FC = () => {
   const [borderCountries, setBorderCountries] = useState<CountryNames[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  console.log(borderCountries);
 
   useEffect(() => {
     const fetchCountry = async () => {
@@ -22,7 +21,7 @@ const CountryDetail: React.FC = () => {
         setIsLoading(true);
         setError("");
         const res = await fetch(
-          `https://restcountries.com/v3.1/name/${paramCountry}`
+          `https://restcountries.com/v3.1/name/${paramCountry}?fullText=true`
         );
         const data = await res.json();
         if (data.status === 404) throw new Error("Country not found");

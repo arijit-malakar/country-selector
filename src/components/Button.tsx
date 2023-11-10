@@ -12,7 +12,7 @@ const Button: React.FC<ButtonProps> = ({ type, icon, children, onClick }) => {
       classNames += "btn-with-icon btn-back";
       break;
     case "theme-switch":
-      classNames += "btn-with-icon btn-theme-toggler";
+      classNames += "btn-with-icon btn-theme-toggle";
       break;
     case "country":
       classNames += "btn-country";

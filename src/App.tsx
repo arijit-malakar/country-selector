@@ -20,6 +20,7 @@ const App = () => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  console.log(error);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -77,33 +78,31 @@ const App = () => {
                 setQuery={setQuery}
               />
             </div>
-            <div className="container-grid">
-              {isLoading ? (
-                <Loader />
-              ) : (
-                <>
-                  {!error &&
-                    countries.map((country, i) => (
-                      <Card
-                        key={i}
-                        to={country.name.official}
-                        image={country.flags.svg}
-                        title={country.name.common}
-                        population={country.population}
-                        region={country.region}
-                        capital={country.capital}
-                      />
-                    ))}
-                  {error && <ErrorMessage message={error} />}
-                </>
-              )}
-            </div>
+            {isLoading ? (
+              <Loader />
+            ) : error ? (
+              <ErrorMessage message={error} />
+            ) : (
+              <div className="container-grid">
+                {countries.map((country, i) => (
+                  <Card
+                    key={i}
+                    to={country.name.official}
+                    image={country.flags.svg}
+                    title={country.name.common}
+                    population={country.population}
+                    region={country.region}
+                    capital={country.capital}
+                  />
+                ))}
+              </div>
+            )}
           </>
         )}
         {currentPath.startsWith("/country/") ? (
           <CountryDetail />
         ) : (
-          <p>Page Not Found ☹️</p>
+          currentPath !== "/" && <p>Page Not Found ☹️</p>
         )}
       </main>
     </>

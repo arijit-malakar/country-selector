@@ -16,12 +16,6 @@
   Text (L): Very Dark Blue Text - hsl(200, 15%, 8%)
   Text Input (L): Dark Gray - hsl(0, 0%, 52%) done
   Text (D): White - hsl(0, 0%, 100%) done
-
-  Background (L): Very Light Gray - hsl(0, 0%, 98%) done
-  Background (D): Very Dark Blue Background - hsl(207, 26%, 17%)
-
-  Elements (L): White - hsl(0, 0%, 100%) done
-  Elements (D): Dark Blue - hsl(209, 23%, 22%) done
 */
 
 :root {
@@ -32,15 +26,7 @@
   --color-very-dark-blue-text: hsl(200, 15%, 8%);
   --color-very-dark-blue-bg: hsl(207, 26%, 17%);
 
-  --background-light: hsl(0, 0%, 98%);
-  --background-dark: hsl(207, 26%, 17%);
-
-  --text-light: hsl(200, 15%, 8%);
-  --text-dark: hsl(0, 0%, 100%);
-  --text-input-light: hsl(0, 0%, 52%);
-
-  --element-light: hsl(0, 0%, 100%);
-  --element-dark: hsl(209, 23%, 22%);
+  --shadow-input: 0 0 8px 1px rgba(0 0 0 /0.1);
 }
 
 .light-theme {
@@ -247,7 +233,7 @@ main {
   background-color: var(--element);
   border: unset;
   border-radius: 0.25rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--shadow-input);
 }
 
 .search-input::placeholder {
@@ -318,7 +304,7 @@ main {
   background-color: var(--element);
   padding: 1rem 1.25rem;
   border-radius: 0.25rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--shadow-input);
 }
 
 .dropdown-arrow path {
@@ -423,6 +409,7 @@ main {
 
 .btn-group {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
