@@ -1,13 +1,16 @@
+export interface CountryNames {
+  common: string;
+  official: string;
+  nativeName: Record<
+    string,
+    {
+      common: string;
+    }
+  >;
+}
+
 export interface Country {
-  name: {
-    common: string;
-    official: string;
-    nativeName: {
-      eng: {
-        official: string;
-      };
-    };
-  };
+  name: CountryNames;
   flags: {
     svg: string;
   };
@@ -18,4 +21,5 @@ export interface Country {
   tld: string[];
   currencies: Record<string, { name: string }>;
   languages: Record<string, string>;
+  borders: string[];
 }
