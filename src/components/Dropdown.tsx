@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
+import { useFilterSearch } from "../hooks/useFilterSearch";
 
-interface DropdownProps {
-  selectedRegion: string;
-  setSelectedRegion: React.Dispatch<React.SetStateAction<string>>;
-  setQuery: React.Dispatch<React.SetStateAction<string>>;
-}
+// interface DropdownProps {
+//   selectedRegion: string;
+//   setSelectedRegion: React.Dispatch<React.SetStateAction<string>>;
+//   setQuery: React.Dispatch<React.SetStateAction<string>>;
+// }
 
-const Dropdown: React.FC<DropdownProps> = ({
-  selectedRegion,
-  setSelectedRegion,
-  setQuery,
-}) => {
+const Dropdown: React.FC = () => {
+  const { selectedRegion, setQuery, setSelectedRegion } = useFilterSearch();
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (

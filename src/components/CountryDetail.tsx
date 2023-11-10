@@ -6,6 +6,7 @@ import { Country, CountryNames } from "../@types/countryTypes";
 import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
 import formatNumber from "../utils/formatNumber";
+import { baseURL } from "../contants";
 
 const CountryDetail: React.FC = () => {
   const { currentPath, navigate } = useNavigation();
@@ -21,7 +22,7 @@ const CountryDetail: React.FC = () => {
         setIsLoading(true);
         setError("");
         const res = await fetch(
-          `https://restcountries.com/v3.1/name/${paramCountry}?fullText=true`
+          `${baseURL}/name/${paramCountry}?fullText=true`
         );
         const data = await res.json();
         if (data.status === 404) throw new Error("Country not found");
@@ -43,7 +44,7 @@ const CountryDetail: React.FC = () => {
           const borderResponses = await Promise.all(
             country.borders.map(async (borderCode) => {
               const res = await fetch(
-                `https://restcountries.com/v3.1/alpha/${borderCode}?fields=name`
+                `${baseURL}/alpha/${borderCode}?fields=name`
               );
               const data = await res.json();
               if (data.status === 404) throw new Error("Wrong country code!");
