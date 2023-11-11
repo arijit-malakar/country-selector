@@ -1,12 +1,6 @@
 import { IoSearchSharp } from "react-icons/io5";
 import { useFilterSearch } from "../hooks/useFilterSearch";
 
-// interface SearchProps {
-//   query: string;
-//   setQuery: React.Dispatch<React.SetStateAction<string>>;
-//   setSelectedRegion: React.Dispatch<React.SetStateAction<string>>;
-// }
-
 const Search: React.FC = () => {
   const { query, setQuery, setSelectedRegion } = useFilterSearch();
 

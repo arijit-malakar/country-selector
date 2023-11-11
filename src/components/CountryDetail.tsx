@@ -1,8 +1,9 @@
 import { useEffect, useState, Fragment } from "react";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
-import { useNavigation } from "../hooks/useNavigation";
-import Button from "./Button";
 import { Country, CountryNames } from "../@types/countryTypes";
+import { useNavigation } from "../hooks/useNavigation";
+import { useFilterSearch } from "../hooks/useFilterSearch";
+import Button from "./Button";
 import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
 import formatNumber from "../utils/formatNumber";
@@ -10,6 +11,7 @@ import { baseURL } from "../contants";
 
 const CountryDetail: React.FC = () => {
   const { currentPath, navigate } = useNavigation();
+  const { selectedRegion, setSelectedRegion } = useFilterSearch();
   const paramCountry = currentPath.split("country/")[1];
   const [country, setCountry] = useState<Country>();
   const [borderCountries, setBorderCountries] = useState<CountryNames[]>([]);
@@ -61,13 +63,20 @@ const CountryDetail: React.FC = () => {
     fetchBorderCountries();
   }, [country?.borders]);
 
+  const handleBack = () => {
+    if (selectedRegion) {
+      setSelectedRegion("");
+    }
+    navigate("/");
+  };
+
   return (
     <>
       <div className="container-btn">
         <Button
           type="back"
           icon={<MdOutlineKeyboardBackspace className="back-icon" />}
-          onClick={() => navigate("/")}
+          onClick={handleBack}
         >
           Back
         </Button>
@@ -140,17 +149,21 @@ const CountryDetail: React.FC = () => {
             <div className="info-border">
               <strong>Border Countries: </strong>
               <div className="btn-group">
-                {borderCountries.map((borderCountry, i) => (
-                  <Button
-                    key={i}
-                    type="country"
-                    onClick={() =>
-                      navigate(`/country/${borderCountry.official}`)
-                    }
-                  >
-                    {borderCountry.common}
-                  </Button>
-                ))}
+                {country?.borders ? (
+                  borderCountries.map((borderCountry, i) => (
+                    <Button
+                      key={i}
+                      type="country"
+                      onClick={() =>
+                        navigate(`/country/${borderCountry.official}`)
+                      }
+                    >
+                      {borderCountry.common}
+                    </Button>
+                  ))
+                ) : (
+                  <span>No border countries exist.</span>
+                )}
               </div>
             </div>
           </div>
