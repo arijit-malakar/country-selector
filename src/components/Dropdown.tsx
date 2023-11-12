@@ -1,13 +1,31 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
 import { useFilterSearch } from "../hooks/useFilterSearch";
 
 const Dropdown: React.FC = () => {
   const { selectedRegion, setQuery, setSelectedRegion } = useFilterSearch();
   const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownEl = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownEl.current &&
+        !dropdownEl.current.contains(e.target as Node)
+      ) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="dropdown">
+    <div className="dropdown" ref={dropdownEl}>
       <div
         className="dropdown-btn"
         onClick={() => setShowDropdown(!showDropdown)}
